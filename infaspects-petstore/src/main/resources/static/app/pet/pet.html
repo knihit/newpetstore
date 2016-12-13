@@ -1,0 +1,12 @@
+
+<div class="row pet" ng-controller="PetController">
+	<div ng-repeat="pet in petStore">
+		<div class="col-md-4">
+			<h3>{{pet.petName}}</h3>
+			<img ng-src"/img/{{pet.photoURL[0]}}.jpg" />
+			<h4>{{pet.status}}</h4>
+			<a class="btn" ng-disabled="pet.status=='Sold' || pet.status=='Not Available'" href="/pet/{{pet.id]}}">Details</a>
+			<a class="btn" ng-click="deletePet(pet.id))">Delete</a>
+		</div>
+	</div>
+</div>
