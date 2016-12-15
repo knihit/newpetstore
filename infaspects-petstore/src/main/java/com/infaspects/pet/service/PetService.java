@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import com.infaspects.pet.domain.Category;
 import com.infaspects.pet.domain.Pet;
 import com.infaspects.pet.domain.Tag;
-import com.infaspects.pet.repository.CategoryRepository;
+//import com.infaspects.pet.repository.CategoryRepository;
 import com.infaspects.pet.repository.PetRepository;
 import com.infaspects.pet.repository.TagRepository;
 
@@ -20,36 +20,36 @@ public class PetService {
 	private static final Logger logger = LoggerFactory.getLogger(PetService.class);
 	
 	private PetRepository petRepository;
-	private CategoryRepository categoryRespository;
+	//private CategoryRepository categoryRespository;
 	private TagRepository tagRepository;
 	private CounterService counterService;
 
 	@Autowired
-	public PetService (PetRepository petRepository, CategoryRepository categoryRepository,
+	public PetService (PetRepository petRepository,
 			TagRepository tagRepository, CounterService counterService) {
 		this.petRepository = petRepository;
-		this.categoryRespository = categoryRepository;
+		//this.categoryRespository = categoryRepository;
 		this.tagRepository = tagRepository;
 		this.counterService = counterService;
 	}
 	
 	public Pet addPet(Pet pet) {
-		List<Category> userListCategory = pet.getCategories();
+		//List<Category> userListCategory = pet.getCategories();
 		List<Category> categoryList = new ArrayList<Category>();
 		
 		pet.setId(counterService.getNextSequence("pet"));
 		
 		//Add new category entry when creating a pet
-		if (null != userListCategory) {
+/*		if (null != userListCategory) {
 			for (Category category:userListCategory) {
 				Category petCategory = new Category();
 				
 				petCategory.setId(counterService.getNextSequence("category"));
-				petCategory.setCategoryName(category.getCategoryName());
+				petCategory.setCategoryName(pet.getCategory());
 				categoryRespository.save(petCategory);
 				categoryList.add(petCategory);
 			}
-		}
+		}*/
 		
 		//Add a new tags when creating a Pet
 		List<Tag> userListTags = pet.getTags();

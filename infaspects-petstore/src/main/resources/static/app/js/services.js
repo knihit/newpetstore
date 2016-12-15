@@ -4,11 +4,23 @@ angular.module('PetStoreApp.services',[])
 
 		petStoreAPIService.getPets = function() {
 			return $http({
-				method: 'JSONP',
-				url: 'http://localhost:8090/pet'
+				method: 'GET',
+				url: 'http://localhost:8080/pet'
 			});
 		}
 
-		return petStoreAPIService;
+        petStoreAPIService.deletePets = function(id) {
+			$http({
+				method: 'DELETE',
+				url: 'http://localhost:8080/pet/:id'
+			})
+		}
 
+		petStoreAPIService.getPetDetails = function(id) {
+			$http({
+				method: 'GET',
+				url: 'http://localhost:8080/pet/:id'
+			})
+		}
+		return petStoreAPIService;
 	});

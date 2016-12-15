@@ -11,10 +11,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 
-import com.infaspects.pet.repository.CategoryRepository;
 import com.infaspects.pet.repository.PetRepository;
 import com.infaspects.pet.repository.TagRepository;
-import com.infaspects.pet.domain.Category;
 import com.infaspects.pet.domain.Tag;
 import com.infaspects.pet.domain.Pet;
 import com.infaspects.pet.service.CounterService;
@@ -35,33 +33,36 @@ public class PetStoreApplication {
 	}
 
 	@Bean
-	CommandLineRunner runner(PetRepository petRepository, CategoryRepository categoryRepository,
+	CommandLineRunner runner(PetRepository petRepository,
 			TagRepository tagRepository, CounterService counterService) {
 		return args -> {
 
 			petRepository.deleteAll();
-			categoryRepository.deleteAll();
 			tagRepository.deleteAll();
 
-			List<Category> listCategory = new ArrayList<Category>();
+/*			//List<Category> listCategory = new ArrayList<Category>();
 			Category canineCategory = new Category();
 			canineCategory.setId(counterService.getNextSequence("category"));
 			canineCategory.setCategoryName("Canine");
-			listCategory.add(canineCategory);
+			//listCategory.add(canineCategory);
 
 			Category repltileCategory = new Category();
 			repltileCategory.setId(counterService.getNextSequence("category"));
 			repltileCategory.setCategoryName("Reptiles");
-			listCategory.add(repltileCategory);
+			//listCategory.add(repltileCategory);
 
 			Category waterCategory = new Category();
 			waterCategory.setId(counterService.getNextSequence("category"));
 			waterCategory.setCategoryName("Fish");
-			listCategory.add(waterCategory);
-
-			categoryRepository.save(canineCategory);
+			
+			Category felineCategory = new Category();
+			waterCategory.setId(counterService.getNextSequence("category"));
+			waterCategory.setCategoryName("Cat");
+			//listCategory.add(waterCategory);
+*/
+/*			categoryRepository.save(canineCategory);
 			categoryRepository.save(repltileCategory);
-			categoryRepository.save(waterCategory);
+			categoryRepository.save(waterCategory);*/
 
 			List<Tag> listTag = new ArrayList<Tag>();
 			Tag cityTag = new Tag();
@@ -87,7 +88,7 @@ public class PetStoreApplication {
 			dog.setPetName("Buster");
 			dog.setPhotoUrl(dogPhotos);
 			dog.setStatus("Sold");
-			dog.setCategories(listCategory);
+			dog.setCategory("Canine");
 			dog.setTags(listTag);
 
 			List<String> catPhotos = new ArrayList<String>();
@@ -101,7 +102,7 @@ public class PetStoreApplication {
 			cat.setPetName("Purrfect");
 			cat.setPhotoUrl(catPhotos);
 			cat.setStatus("Available");
-			cat.setCategories(listCategory);
+			cat.setCategory("Feline");
 			cat.setTags(listTag);
 
 			List<String> lionPhotos = new ArrayList<String>();
@@ -115,7 +116,7 @@ public class PetStoreApplication {
 			lion.setPetName("King!");
 			lion.setPhotoUrl(lionPhotos);
 			lion.setStatus("Pending");
-			lion.setCategories(listCategory);
+			lion.setCategory("Feline");
 			lion.setTags(listTag);
 
 			petRepository.save(dog);

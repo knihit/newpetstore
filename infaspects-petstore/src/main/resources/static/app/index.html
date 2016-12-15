@@ -3,22 +3,29 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
 </head>
 <body ng-app="PetStoreApp" ng-controller="petStoreController">
-<table>
+<input type="text" ng-model="petFilter">
+<table border="1" width="100%">
     <thead>
     <tr>
-        <th colspan="4">Pets at Infaspects Pet Store</th>
+        <th colspan="7">Pets at Infaspects Pet Store</th>
     </tr>
     </thead>
     <tbody>
-    <tr ng-repeat="pet in petStore">
-        <td>{{pet.id}}</td>
+    <tr ng-repeat="pet in petStore | filter:petFilter">
+        <td>{{$index+1}}</td>
         <td>
-            <img src="img/{{pet.photoUrl[0]}}.jpeg"/>
-            {{pet.petName}}
+            <div ng-repeat="petPhoto in pet.photoUrl">
+                <img ng-src="img/{{petPhoto}}.jpg" />
+            </div>
         </td>
+        <td>{{pet.petName}}/></td>
+        <td>{{pet.category}}</td>
         <td>{{pet.status}}</td>
+        <td><div ng-repeat="petTag in pet.tags">{{petTag.tagName}}</div></td>
+        <td><div ng-controller="deletePetController"><a href="#" ng-click='deletePet({{pet.id}})'>Delete</a></div></td>
     </tr>
     </tbody>
 </table>

@@ -1,0 +1,26 @@
+<body ng-app="PetStoreApp" ng-controller="petStoreController">
+<input type="text" ng-model="petFilter">
+<table border="1" width="100%">
+    <thead>
+    <tr>
+        <th colspan="7">Pets at Infaspects Pet Store</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="pet in petStore | filter:petFilter">
+        <td>{{$index+1}}</td>
+        <td>
+            <div ng-repeat="petPhoto in pet.photoUrl">
+                <img ng-src="img/{{petPhoto}}.jpg" />
+            </div>
+        </td>
+        <td>{{pet.petName}}/></td>
+        <td>{{pet.category}}</td>
+        <td>{{pet.status}}</td>
+        <td><div ng-repeat="petTag in pet.tags">
+            {{petTag.tagName}}
+        </div></td>
+        <td><input type="button" ></td>
+    </tr>
+    </tbody>
+</table>

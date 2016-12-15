@@ -12,8 +12,7 @@ public class Pet {
 	@Id
 	private Integer id;
 
-	@DBRef
-	private List<Category> categories;
+	private String category;
 	
 	private String petName;
 	
@@ -32,12 +31,12 @@ public class Pet {
 		this.id = id;
 	}
 
-	public List<Category> getCategories() {
-		return categories;
+	public String getCategory() {
+		return category;
 	}
 
-	public void setCategories(List<Category> categories) {
-		this.categories = categories;
+	public void setCategory(String category) {
+		this.category = category;
 	}
 
 	public String getPetName() {
