@@ -8,10 +8,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.infaspects.pet.domain.Category;
 import com.infaspects.pet.domain.Pet;
 import com.infaspects.pet.domain.Tag;
-//import com.infaspects.pet.repository.CategoryRepository;
 import com.infaspects.pet.repository.PetRepository;
 import com.infaspects.pet.repository.TagRepository;
 
@@ -33,23 +31,8 @@ public class PetService {
 		this.counterService = counterService;
 	}
 	
-	public Pet addPet(Pet pet) {
-		//List<Category> userListCategory = pet.getCategories();
-		List<Category> categoryList = new ArrayList<Category>();
-		
+	public Pet addPet(Pet pet) {		
 		pet.setId(counterService.getNextSequence("pet"));
-		
-		//Add new category entry when creating a pet
-/*		if (null != userListCategory) {
-			for (Category category:userListCategory) {
-				Category petCategory = new Category();
-				
-				petCategory.setId(counterService.getNextSequence("category"));
-				petCategory.setCategoryName(pet.getCategory());
-				categoryRespository.save(petCategory);
-				categoryList.add(petCategory);
-			}
-		}*/
 		
 		//Add a new tags when creating a Pet
 		List<Tag> userListTags = pet.getTags();

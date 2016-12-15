@@ -11,9 +11,14 @@ angular.module('PetStoreApp.controllers', [])
             $scope.petStore = data;
         });
     })
-    .controller('deletePetController',function(petStoreAPIService) {
-        var deletePet = function($scope) {
-            console.debug("calling pet store service to delete", id);
-            petStoreAPIService.deletePet($scope.id);
-        }
+    .controller('deletePetController',function($scope, petStoreAPIService) {
+        $scope.deletePet = (function(pet) {
+            console.debug("In controller to delete ",pet.id);
+            petStoreAPIService.deletePet(pet.id);
+                /*.success(function () {
+                petStoreAPIService.getPets().success(function (data) {
+                    $scope.petStore = data;
+                });
+            });*/
+        });
     });

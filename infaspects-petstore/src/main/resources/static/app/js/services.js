@@ -1,5 +1,6 @@
 angular.module('PetStoreApp.services',[])
 	.factory('petStoreAPIService', function($http){
+		console.debug("retrieving details of all pets in petstore")
 		var petStoreAPIService = {};
 
 		petStoreAPIService.getPets = function() {
@@ -9,17 +10,19 @@ angular.module('PetStoreApp.services',[])
 			});
 		}
 
-        petStoreAPIService.deletePets = function(id) {
-			$http({
+        petStoreAPIService.deletePet = function(id) {
+			console.debug("Making service call to delete pet ",id);
+			return $http({
 				method: 'DELETE',
-				url: 'http://localhost:8080/pet/:id'
+				url: 'http://localhost:8080/pet/'+id
 			})
 		}
 
 		petStoreAPIService.getPetDetails = function(id) {
-			$http({
+			console.debug("Retrieving details of pet ", id);
+			return $http({
 				method: 'GET',
-				url: 'http://localhost:8080/pet/:id'
+				url: 'http://localhost:8080/pet/'+id
 			})
 		}
 		return petStoreAPIService;

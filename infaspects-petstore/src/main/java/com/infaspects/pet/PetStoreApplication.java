@@ -40,30 +40,6 @@ public class PetStoreApplication {
 			petRepository.deleteAll();
 			tagRepository.deleteAll();
 
-/*			//List<Category> listCategory = new ArrayList<Category>();
-			Category canineCategory = new Category();
-			canineCategory.setId(counterService.getNextSequence("category"));
-			canineCategory.setCategoryName("Canine");
-			//listCategory.add(canineCategory);
-
-			Category repltileCategory = new Category();
-			repltileCategory.setId(counterService.getNextSequence("category"));
-			repltileCategory.setCategoryName("Reptiles");
-			//listCategory.add(repltileCategory);
-
-			Category waterCategory = new Category();
-			waterCategory.setId(counterService.getNextSequence("category"));
-			waterCategory.setCategoryName("Fish");
-			
-			Category felineCategory = new Category();
-			waterCategory.setId(counterService.getNextSequence("category"));
-			waterCategory.setCategoryName("Cat");
-			//listCategory.add(waterCategory);
-*/
-/*			categoryRepository.save(canineCategory);
-			categoryRepository.save(repltileCategory);
-			categoryRepository.save(waterCategory);*/
-
 			List<Tag> listTag = new ArrayList<Tag>();
 			Tag cityTag = new Tag();
 			cityTag.setId(counterService.getNextSequence("tag"));
