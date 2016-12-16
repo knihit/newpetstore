@@ -18,7 +18,6 @@ public class PetService {
 	private static final Logger logger = LoggerFactory.getLogger(PetService.class);
 	
 	private PetRepository petRepository;
-	//private CategoryRepository categoryRespository;
 	private TagRepository tagRepository;
 	private CounterService counterService;
 
@@ -26,7 +25,6 @@ public class PetService {
 	public PetService (PetRepository petRepository,
 			TagRepository tagRepository, CounterService counterService) {
 		this.petRepository = petRepository;
-		//this.categoryRespository = categoryRepository;
 		this.tagRepository = tagRepository;
 		this.counterService = counterService;
 	}
@@ -61,6 +59,7 @@ public class PetService {
 	 * @return
 	 */
 	public Pet findByID(Integer id) {
+		logger.debug("finding pet id "+id);
 		return petRepository.findOne(id);
 	}
 	

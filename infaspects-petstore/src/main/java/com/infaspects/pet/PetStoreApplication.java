@@ -23,6 +23,7 @@ public class PetStoreApplication {
 	private static final Logger logger = LoggerFactory.getLogger(PetStoreApplication.class);
 
 	public static void main(String[] args) {
+		logger.debug("Starting spring boot");
 		ApplicationContext ctx = SpringApplication.run(PetStoreApplication.class, args);
 
 		String[] beanNames = ctx.getBeanDefinitionNames();
@@ -36,7 +37,8 @@ public class PetStoreApplication {
 	CommandLineRunner runner(PetRepository petRepository,
 			TagRepository tagRepository, CounterService counterService) {
 		return args -> {
-
+			counterService.deleteSequenceForCollection("tag");
+			counterService.deleteSequenceForCollection("pet");
 			petRepository.deleteAll();
 			tagRepository.deleteAll();
 

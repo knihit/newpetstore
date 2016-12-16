@@ -1,50 +1,14 @@
-<!Document html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<!--
-    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!--<link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 -->
     <link rel="stylesheet" href="css/style.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/petstore.css" rel="stylesheet">
 </head>
-<body id="page" ng-app="PetStoreApp" ng-controller="petStoreController">
-
-<div id="logo" class="banner">Infaspects Pet Store</div>
-
-<br><br><br><br><div class="div-table">
-<input type="search" ng-model="petFilter" size="40">
-</div><br>
-
-<div class="div-table">
-    <!-column headers -->
-    <div class="div-row">
-        <div class="div-cell" style="font-weight: bold">Name</div>
-        <div class="div-cell" style="font-weight: bold">Photos</div>
-        <div class="div-cell" style="font-weight: bold">Category</div>
-        <div class="div-cell" style="font-weight: bold">Status</div>
-        <div class="div-cell" style="font-weight: bold">Tags</div>
-        <div class="div-cell" style="font-weight: bold">&nbsp;</div>
-    </div>
-
-    <div class="div-row" ng-repeat="pet in petStore | filter:petFilter">
-        <div class="div-cell">{{pet.petName}}</div>
-        <div class="div-cell"><div ng-repeat="petPhoto in pet.photoUrl" style="float: left; display: inline-block">
-            <img ng-src="img/{{petPhoto}}.jpg" width="60" height="60"/>
-            </div>
-        </div>
-        <div class="div-cell">{{pet.category}}</div>
-        <div class="div-cell">{{pet.status}}</div>
-        <div class="div-cell"><div ng-repeat="petTag in pet.tags" style="float: left; display: inline-block">{{petTag.tagName}}</div></div>
-        <div class="div-cell" ng-controller="deletePetController"><a href="#">
-            <img src="img/delete-icon.jpg" ng-click='deletePet(pet)' alt="Delete Pet" width="20" height="20"></a>
-        </div>
-    </div>
-    <div class="div-row" align="center" ng-hide="pet.length">No pets in store</div>
-</div>
-
+<body id="page" ng-app="PetStoreApp">
+<ng-view></ng-view>
 <script src="bower_components/angular/angular.js"></script>
 <script src="bower_components/angular-route/angular-route.js"></script>
 <script src="js/app.js"></script>

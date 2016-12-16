@@ -24,6 +24,10 @@ public class CounterService {
 
 	@Autowired
 	private MongoOperations operations;
+	
+	public void deleteSequenceForCollection(String collectionName) {
+		operations.dropCollection(collectionName);
+	}
 
 	public int getNextSequence(String collectionName) {
 		

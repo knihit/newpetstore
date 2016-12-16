@@ -1,0 +1,31 @@
+<br xmlns="http://www.w3.org/1999/html"><br><br><br><br>
+
+<div class="div-table" id="addPet">
+    <div class="div-row">
+        <div class="div-cell"><strong>Pet Name:</strong>
+            <input type="text" ng-model="petName" size="20" maxlength="20"></input>
+        </div>
+    </div>
+    <div class="div-row">
+        <div class="div-cell">
+            <strong>Status: </strong>
+            <select ng-model="status" id="selectStatus">
+            <option value="">--Select--</option>
+            <option value="Sold">Sold</option>
+            <option value="Not Available">Not Available</option>
+            <option value="Available">Available</option>
+            <option value="Back Ordered">Back Ordered</option>
+        </select></div>
+    </div>
+    <div class="div-row">
+        <div class="div-cell" id="category">
+            <select ng-model="categories" multiple>
+                <option value="">--Select--</option>
+                <option value="Canine">Canine</option>
+                <option value="Feline">Feline</option>
+                <option value="Reptile">Reptile</option>
+                <option value="Aquatic">Aquatic</option>
+            </select>
+        </div>
+    </div>
+</div>

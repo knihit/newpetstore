@@ -1,0 +1,23 @@
+<div>
+    <br><br><br><br><br>
+    <a href="#/pet"><strong>Go Back</strong></a>
+    <br>
+    <br>
+    <span width="50%">
+    <div class="div-table" id="petDetails">
+        <div class="div-row">
+            <div class="div-cell">
+                <div ng-repeat="petPhoto in pet.photoUrl">
+                    <img ng-src="img/{{petPhoto}}.jpg" height="60" width="60"/>
+                </div>
+            </div>
+            <div class="div-cell">
+                <div><strong>Name:</strong> {{pet.petName}}</div>
+                <div><strong>Category:</strong>{{pet.category}}</div>
+                <div><strong>Status:</strong>{{pet.status}}</div>
+                <div><strong>Tags:</strong>
+                    <div ng-repeat="petTag in pet.tags">{{petTag.tagName}}</div>
+                </div>
+            </div>
+    </div>
+</div>

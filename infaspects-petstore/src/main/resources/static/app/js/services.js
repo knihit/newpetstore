@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('PetStoreApp.services',[])
 	.factory('petStoreAPIService', function($http){
 		console.debug("retrieving details of all pets in petstore")
@@ -12,10 +14,8 @@ angular.module('PetStoreApp.services',[])
 
         petStoreAPIService.deletePet = function(id) {
 			console.debug("Making service call to delete pet ",id);
-			return $http({
-				method: 'DELETE',
-				url: 'http://localhost:8080/pet/'+id
-			})
+			var url = 'http://localhost:8080/pet/'+id;
+			return $http.delete(url);
 		}
 
 		petStoreAPIService.getPetDetails = function(id) {

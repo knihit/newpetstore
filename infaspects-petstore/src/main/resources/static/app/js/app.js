@@ -1,11 +1,22 @@
+'use strict';
+
 angular.module('PetStoreApp',[
 	'PetStoreApp.controllers',
     'PetStoreApp.services',
     'ngRoute'
-]).config(['$routeProvider', function ($routeProvider) {
-    console.log("inside router config");
+]).config(function($routeProvider){
     $routeProvider
-        .when("/app/pet", {templateUrl: "partials/petStore.html", controller: "petStoreController"})
-        .when("/app/pet/:id", {templateUrl: "partials/pet.html", controller: "petController"})
-        .otherwise({redirectTo: '/index.html'});
-}]);
+        .when('/', {
+            templateUrl: 'pet/petStore.html',
+            controller: 'petStoreController'
+        }).when('/pet', {
+            templateUrl : 'pet/petStore.html',
+            controller: 'petStoreController'
+        }).when('/pet/:petId', {
+            templateUrl : 'pet/petDetails.html',
+            controller: 'petDetailsController'
+        }).when('/add', {
+            templateUrl: 'pet/petAdd.html',
+            controller: 'petAddController'
+        }).otherwise({redirectTo: '/pet'});
+});
