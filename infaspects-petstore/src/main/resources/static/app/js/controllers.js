@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('PetStoreApp.controllers', [])
-    .controller('petStoreController', function ($scope, petStoreAPIService, $location) {
+    .controller('petStoreController', function ($location, $scope, petStoreAPIService) {
         console.debug("petStoreController->getPets")
         $scope.petStore = [];
         // $scope.searchIDFilter = function(pet) {
@@ -45,6 +45,57 @@ angular.module('PetStoreApp.controllers', [])
            $scope.pet = data;
         });
     })
-    .controller ('petAddController', function($scope, petStoreAPIService){
+    .controller ('petAddController', function($http, $location, $scope, petStoreAPIService){
         console.debug("petAddController->addPet")
+
+        $scope.categoryDropDown = [];
+        $scope.statusDropDown = [];
+        $scope.photoCheckBox = [];
+
+        console.debug("petAddController->loading dropdowns")
+        $http.get('config/dropdown.json').success(function(data){
+            console.debug("Dropdown values ", data);
+            $scope.categoryDropDown = data.categoryDropDown;
+            $scope.statusDropDown = data.statusDropDown;
+            $scope.photoCheckBox = data.petImages;
+        });
+
+        $scope.toggleSelection = function(petImageName) {
+            var index = $scope.selection.indexOf(petImageName);
+
+            if (index > -1) {
+                $scope.selection.splice(index, 1);
+            } else {
+                $scope.selection.push(petImageName);
+            }
+        }
+
+        $scope.addPet = function(){
+            console.debug("petAddController->add");
+
+            var petTags = $scope.pet.tags.split(',');
+            var petTagsJSON = new Array();
+            for (var i=0; i<petTags.length;++i) {
+                var petTagJSON = new Object();
+                petTagJSON.tagName = petTags[i];
+                petTagsJSON.push(petTagJSON);
+            }
+
+            var petToAdd = {
+                petName:$scope.pet.petName,
+                category:$scope.pet.selectedCategory.value,
+                tags:petTagsJSON,
+                status:$scope.pet.selectedStatus.value,
+                photoUrl:$scope.selection
+            }
+
+            console.debug("petAddController->form values->"+petToAdd);
+
+            $http.post('http://localhost:8080/pet/', petToAdd).success(function() {
+               console.log("petAddController->addPet->pet added");
+               $location.path('/pet/');
+            }).error(function(data, status, headers, config){
+                console.debug("Add pet failed "+JSON.stringify({data:data}))
+            });
+        };
     });

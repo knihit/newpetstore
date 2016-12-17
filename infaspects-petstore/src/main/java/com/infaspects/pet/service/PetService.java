@@ -45,8 +45,9 @@ public class PetService {
 				tagRepository.save(petTag);
 				tagList.add(petTag);
 			}
+			pet.setTags(tagList);
 		}
-		
+				
 		logger.debug("Creating pet "+pet);
 		
 		return petRepository.save(pet);

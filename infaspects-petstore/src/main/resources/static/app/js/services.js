@@ -2,6 +2,14 @@
 
 angular.module('PetStoreApp.services',[])
 	.factory('petStoreAPIService', function($http){
+		var endPointUrl = null;
+
+		$http.get('config/env.json')
+			.success(function(data) {
+				endPointUrl = data.serviceEndPoint
+            }
+		)
+
 		console.debug("retrieving details of all pets in petstore")
 		var petStoreAPIService = {};
 

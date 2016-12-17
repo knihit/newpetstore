@@ -1,31 +1,48 @@
 <br xmlns="http://www.w3.org/1999/html"><br><br><br><br>
+<div ng-controller="petAddController">
+<form ng-submit="addPet()" name="addPetForm" novalidate>
+    <div class="div-table" id="addPet">
+        <div class="div-row">
+            <div class="div-cell"><strong>Pet Name: </strong></div>
+            <div class="div-cell">
+                <input type="text" ng-model="pet.petName" size="20" maxlength="20"></input>
+            </div>
+        </div>
+        <div class="div-row">
+            <div class="div-cell">
+                <strong>Status: </strong>
+            </div>
+            <div class="div-cell">
+                <select ng-options="status.value for status in statusDropDown" ng-model="pet.selectedStatus"></select>
+            </div>
+        </div>
+        <div class="div-row">
+            <ul>
+                <li ng-repeat="petImage in photoCheckBox">
+                    <input id="{{petImage.name}}" type="checkbox"e value="{{petImage.name}}"
+                           ng-click="toggleSelection(petImage.name)" ng-checked="selection.indexOf(petImage.name) > -1" />
+                    <img ng-src="img/{{petImage.value}}.jpg" alt="{{petImage.name}}" width="25" height="25"/>
+                </li>
+            </ul>
+        </div>
+        <div class="div-row">
+            <div class="div-cell"><strong>Category: </strong></div>
+            <div class="div-cell" id="category">
+                <select id-="categoryDropDown" ng-options="cat.value for cat in categoryDropDown" ng-model="pet.selectedCategory"></select>
+            </div>
+        </div>
 
-<div class="div-table" id="addPet">
-    <div class="div-row">
-        <div class="div-cell"><strong>Pet Name:</strong>
-            <input type="text" ng-model="petName" size="20" maxlength="20"></input>
+        <div class="div-row">
+            <div class="div-cell"><strong>Tag: </strong></div>
+            <div class="div-cell">
+                <textarea rows="2" cols="50" ng-model="pet.tags"></textarea>
+            </div>
+        </div>
+
+        <div class="div-row">
+            <div class="div-cell"><input type="submit" class="btn btn-primary" value="Add Pet"></div>
+            <div class="div-cell"><input type="button" class="btn" value="Cancel" ng-click="cancelAdd()"></div>
         </div>
     </div>
-    <div class="div-row">
-        <div class="div-cell">
-            <strong>Status: </strong>
-            <select ng-model="status" id="selectStatus">
-            <option value="">--Select--</option>
-            <option value="Sold">Sold</option>
-            <option value="Not Available">Not Available</option>
-            <option value="Available">Available</option>
-            <option value="Back Ordered">Back Ordered</option>
-        </select></div>
-    </div>
-    <div class="div-row">
-        <div class="div-cell" id="category">
-            <select ng-model="categories" multiple>
-                <option value="">--Select--</option>
-                <option value="Canine">Canine</option>
-                <option value="Feline">Feline</option>
-                <option value="Reptile">Reptile</option>
-                <option value="Aquatic">Aquatic</option>
-            </select>
-        </div>
-    </div>
+</form>
 </div>
