@@ -1,5 +1,7 @@
 package com.infaspects.pet.controller;
 
+import javax.validation.Valid;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +32,9 @@ public class PetController {
 	@RequestMapping(method=RequestMethod.GET)
 	public ResponseEntity<Iterable<Pet>> findAll() {
 		logger.debug("Retrieving all pets in pet store");
-		return new ResponseEntity<Iterable<Pet>>(petService.findAll(), HttpStatus.OK);
+		ResponseEntity<Iterable<Pet>> response = new ResponseEntity<Iterable<Pet>>(petService.findAll(), HttpStatus.OK);
+		logger.debug(response.toString());
+		return response;
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
@@ -45,9 +49,11 @@ public class PetController {
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public ResponseEntity<Pet> create(@RequestBody Pet pet) {
+	public ResponseEntity<Pet> create(@Valid @RequestBody(required=true) Pet pet) {
 		logger.debug("Adding a new pet");
-		return new ResponseEntity<Pet>(petService.addPet(pet), HttpStatus.CREATED);
+		ResponseEntity<Pet> response = new ResponseEntity<Pet>(petService.addPet(pet), HttpStatus.CREATED);
+		logger.debug("Post adding pet "+response);
+		return response;
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)

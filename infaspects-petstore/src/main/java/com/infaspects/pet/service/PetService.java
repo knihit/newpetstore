@@ -29,7 +29,8 @@ public class PetService {
 		this.counterService = counterService;
 	}
 	
-	public Pet addPet(Pet pet) {		
+	public Pet addPet(Pet pet) {
+		logger.debug("Adding pet "+pet);
 		pet.setId(counterService.getNextSequence("pet"));
 		
 		//Add a new tags when creating a Pet

@@ -73,6 +73,6 @@ public class Pet {
 	
 	@Override
 	public String toString() {
-		return "pet:{id:"+id+"name:"+petName+",status:"+status+"}";
+		return "pet:{id:"+id+",name:"+petName+",status:"+status+",category:"+category+"}";
 	}
 }
