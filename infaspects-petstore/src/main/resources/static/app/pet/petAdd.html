@@ -1,42 +1,44 @@
-<br xmlns="http://www.w3.org/1999/html"><br><br><br><br>
+<br><br><br><br><br>
 <div ng-controller="petAddController">
-<form ng-submit="addPet()" name="addPetForm" novalidate>
+<form ng-submit="addPet()" name="addPetForm">
     <div class="div-table" id="addPet">
         <div class="div-row">
             <div class="div-cell"><strong>Pet Name: </strong></div>
             <div class="div-cell">
-                <input type="text" ng-model="pet.petName" size="20" maxlength="20"></input>
+                <input id="petName" type="text" ng-model="pet.petName" size="20" maxlength="20" minlength="3" required></input>
             </div>
         </div>
-        <div class="div-row">
+        <div class="div-row" id="selectStatus">
+            <div class="div-cell"><strong>Status: </strong></div>
             <div class="div-cell">
-                <strong>Status: </strong>
-            </div>
-            <div class="div-cell">
-                <select ng-options="status.value for status in statusDropDown" ng-model="pet.selectedStatus"></select>
+                <select id="statusDropDown" ng-options="status.value for status in statusDropDown" ng-model="pet.selectedStatus" required>
+                    <option></option>
+                </select>
             </div>
         </div>
-        <div class="div-row">
-            <ul>
-                <li ng-repeat="petImage in photoCheckBox">
-                    <input id="{{petImage.name}}" type="checkbox"e value="{{petImage.name}}"
-                           ng-click="toggleSelection(petImage.name)" ng-checked="selection.indexOf(petImage.name) > -1" />
-                    <img ng-src="img/{{petImage.value}}.jpg" alt="{{petImage.name}}" width="25" height="25"/>
-                </li>
-            </ul>
-        </div>
-        <div class="div-row">
+        <div class="div-row" id="selectCategory">
             <div class="div-cell"><strong>Category: </strong></div>
-            <div class="div-cell" id="category">
-                <select id-="categoryDropDown" ng-options="cat.value for cat in categoryDropDown" ng-model="pet.selectedCategory"></select>
+            <div class="div-cell">
+                <select id="categoryDropDown" ng-options="cat.value for cat in categoryDropDown" ng-model="pet.selectedCategory" required>
+                    <option></option>
+                </select>
             </div>
         </div>
 
-        <div class="div-row">
+        <div class="div-row" id="selectTag">
             <div class="div-cell"><strong>Tag: </strong></div>
             <div class="div-cell">
-                <textarea rows="2" cols="50" ng-model="pet.tags"></textarea>
+                <textarea name="tags" rows="2" cols="50" ng-model="pet.tags" ng-minlength="3" ng-maxlength="50" required></textarea>
             </div>
+        </div>
+        <div class="div-row" id="selectPhotos">
+            <ul>
+                <li ng-repeat="petImage in photoCheckBox">
+                    <input id="{{petImage.name}}" type="checkbox" value="{{petImage.name}}" ng-required="selection.length==0"
+                           ng-click="toggleSelection(petImage.name)" ng-checked="selection.indexOf(petImage.name) > -1" />
+                    <img ng-src="img/{{petImage.value}}.jpg" alt="{{petImage.name}}" width="35" height="35"/>
+                </li>
+            </ul>
         </div>
 
         <div class="div-row">

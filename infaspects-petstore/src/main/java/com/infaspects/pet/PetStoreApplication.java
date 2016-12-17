@@ -84,10 +84,10 @@ public class PetStoreApplication {
 			cat.setTags(listTag);
 
 			List<String> lionPhotos = new ArrayList<String>();
-			lionPhotos.add("lion");
-			lionPhotos.add("lion_1");
-			lionPhotos.add("lion_2");
-			lionPhotos.add("lion_3");
+			lionPhotos.add("Lion");
+			lionPhotos.add("Lion_1");
+			lionPhotos.add("Lion_2");
+			lionPhotos.add("Lion_3");
 
 			Pet lion = new Pet();
 			lion.setId(counterService.getNextSequence("pet"));

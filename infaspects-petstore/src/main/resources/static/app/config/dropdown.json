@@ -15,15 +15,15 @@
 
   "petImages": [
     {"id":"1","name":"cat","value": "cat"},
-    {"id":"2","name":"cat_1 ","value": "cat_1"},
+    {"id":"2","name":"cat_1","value": "cat_1"},
     {"id":"3","name":"cat_2", "value":"cat_2"},
     {"id":"4","name":"cat_3","value": "cat_3"},
     {"id":"5","name":"dog","value": "dog"},
-    {"id":"6","name":"dag_1 ","value": "dog_1"},
+    {"id":"6","name":"dag_1","value": "dog_1"},
     {"id":"7","name":"dog_2", "value":"dog_2"},
     {"id":"8","name":"Lion","value": "Lion"},
     {"id":"9","name":"Lion_1","value": "Lion_1"},
-    {"id":"10","name":"Lion_2 ","value": "Lion_2"},
+    {"id":"10","name":"Lion_2","value": "Lion_2"},
     {"id":"11","name":"Lion_3", "value":"Lion_3"}
   ]
 }

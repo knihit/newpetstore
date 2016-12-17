@@ -60,6 +60,7 @@ angular.module('PetStoreApp.controllers', [])
             $scope.photoCheckBox = data.petImages;
         });
 
+        $scope.selection = [];
         $scope.toggleSelection = function(petImageName) {
             var index = $scope.selection.indexOf(petImageName);
 
@@ -70,7 +71,7 @@ angular.module('PetStoreApp.controllers', [])
             }
         }
 
-        $scope.addPet = function(){
+        $scope.addPet = function(isValid){
             console.debug("petAddController->add");
 
             var petTags = $scope.pet.tags.split(',');
@@ -98,4 +99,8 @@ angular.module('PetStoreApp.controllers', [])
                 console.debug("Add pet failed "+JSON.stringify({data:data}))
             });
         };
+
+        $scope.cancelAdd = function() {
+            $location.path('/pet/');
+        }
     });

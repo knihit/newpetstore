@@ -1,7 +1,14 @@
 <div id="logo" class="banner">Infaspects Pet Store</div>
 
 <br><br><br><br><div class="div-table">
-    Search for Pets <input type="search" ng-model="petFilter" size="40">
+    <div class="div-row">
+        <div style="float: left; width: 500px">
+            Search for Pets <input type="search" ng-model="petFilter" size="40">
+        </div>
+        <div style="float: left">
+            <a href="#/add" >Add Pet</a>
+        </div>
+    </div>
 </div><br>
 
 <div class="div-table">
@@ -23,11 +30,9 @@
         </div>
         <div class="div-cell">{{pet.category}}</div>
         <div class="div-cell">{{pet.status}}</div>
-        <div class="div-cell"><div ng-repeat="petTag in pet.tags | limitTo:5" style="float: left; display: inline-block">{{petTag.tagName}}</div></div>
+        <div class="div-cell"><div ng-repeat="petTag in pet.tags | limitTo:5" style="float: left; display: inline-block">{{petTag.tagName}}&nbsp;</div></div>
         <div class="div-cell">
             <input type="button" class="btn btn-danger" ng-click="deletePet(pet)" width="20" height="20" value="Delete" />
         </div>
     </div>
 </div>
-<br>
-<div><a href="#/add" >Add Pet</a></div>
