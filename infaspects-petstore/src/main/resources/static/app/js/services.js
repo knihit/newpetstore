@@ -1,37 +1,36 @@
 'use strict';
 
-angular.module('PetStoreApp.services',[])
-	.factory('petStoreAPIService', function($http){
-		var endPointUrl = null;
+angular.module('PetStoreApp.services', [])
+  .factory('petStoreAPIService', function ($http) {
+    var endPointUrl = null;
 
-		$http.get('config/env.json')
-			.success(function(data) {
-				endPointUrl = data.serviceEndPoint
-            }
-		)
+    console.debug("retrieving details of all pets in petstore")
+    var petStoreAPI = {};
 
-		console.debug("retrieving details of all pets in petstore")
-		var petStoreAPIService = {};
+    petStoreAPI.getPets = function () {
+      console.debug("petStoreAPIService->getPets");
+      return $http({
+        method: 'GET',
+        url: 'http://localhost:8080/pet'
+      });
+    }
 
-		petStoreAPIService.getPets = function() {
-			return $http({
-				method: 'GET',
-				url: 'http://localhost:8080/pet'
-			});
-		}
+    petStoreAPI.deletePet = function (id) {
+      console.debug("Making service call to delete pet ", id);
+      var url = 'http://localhost:8080/pet/' + id;
+      return $http.delete(url);
+    }
 
-        petStoreAPIService.deletePet = function(id) {
-			console.debug("Making service call to delete pet ",id);
-			var url = 'http://localhost:8080/pet/'+id;
-			return $http.delete(url);
-		}
+    petStoreAPI.getPetDetails = function (id) {
+      console.debug("Retrieving details of pet ", id);
+      return $http({
+        method: 'GET',
+        url: 'http://localhost:8080/pet/' + id
+      })
+    }
 
-		petStoreAPIService.getPetDetails = function(id) {
-			console.debug("Retrieving details of pet ", id);
-			return $http({
-				method: 'GET',
-				url: 'http://localhost:8080/pet/'+id
-			})
-		}
-		return petStoreAPIService;
-	});
+    petStoreAPI.addPet = function(petToAdd) {
+      return $http.post('http://localhost:8080/pet/', petToAdd);
+    }
+    return petStoreAPI;
+  });

@@ -113,6 +113,13 @@ public class PetStoreAddControllerTest {
 
     }
 
+    @Test
+    public void addEmptyPet() throws Exception {
+    	mockMvc.perform(post("/pet")
+				.contentType(contentType)
+				.content(json(null)))
+				.andExpect(status().isBadRequest());
+    }
 	
     /**
      * Test case to add a pet

@@ -1,38 +1,23 @@
-<div id="logo" class="banner">Infaspects Pet Store</div>
+<div id="logo" class="banner"><strong>Infaspects Pet Store</strong></div>
+<div id="header_bottom">
+  <p><a href="#/add">Add Pet</a>
+  </p>
+  <div id="tooplate_search">
+    <strong>Search for Pets</strong> <input type="search" ng-model="petFilter" size="40">
+  </div>
+</div><br><br><br><br>
 
-<br><br><br><br><div class="div-table">
-    <div class="div-row">
-        <div style="float: left; width: 500px">
-            Search for Pets <input type="search" ng-model="petFilter" size="40">
-        </div>
-        <div style="float: left">
-            <a href="#/add" >Add Pet</a>
-        </div>
+<div id="tooplate_main"><span class="main_border main_border_t"></span><span class="main_border main_border_b"></span>
+  <div class="product">
+    <h1>Pets at our store</h1>
+    <div class="product_box" ng-repeat="pet in petStore | filter:petFilter">
+      <div class="img_box"><span></span>
+        <a href="#/pet/{{pet.id}}"><img ng-src="img/{{pet.photoUrl[0]}}.jpg" width="120" height="120"/></a>
+      </div>
+      <h2><a href="#/pet/{{pet.id}}">Name: {{pet.petName}}</a></h2>
+      <p class="price"><span><strong>Status: </strong>{{pet.status}}</span></p>
     </div>
-</div><br>
+  </div>
 
-<div class="div-table">
-    <!-column headers -->
-    <div class="div-row">
-        <div class="div-cell" style="font-weight: bold">Name</div>
-        <div class="div-cell" style="font-weight: bold">Photos</div>
-        <div class="div-cell" style="font-weight: bold">Category</div>
-        <div class="div-cell" style="font-weight: bold">Status</div>
-        <div class="div-cell" style="font-weight: bold">Tags</div>
-        <div class="div-cell" style="font-weight: bold">&nbsp;</div>
-    </div>
-    <div class="div-row" align="center" ng-hide="petStore.length">No pets in store</div>
-    <div class="div-row" ng-repeat="pet in petStore | filter:petFilter">
-        <div class="div-cell"><a href="#/pet/{{pet.id}}">{{pet.petName}}</a></div>
-        <div class="div-cell"><div ng-repeat="petPhoto in pet.photoUrl | limitTo:3" style="float: left; display: inline-block">
-            <img ng-src="img/{{petPhoto}}.jpg" width="60" height="60"/>
-        </div>
-        </div>
-        <div class="div-cell">{{pet.category}}</div>
-        <div class="div-cell">{{pet.status}}</div>
-        <div class="div-cell"><div ng-repeat="petTag in pet.tags | limitTo:5" style="float: left; display: inline-block">{{petTag.tagName}}&nbsp;</div></div>
-        <div class="div-cell">
-            <input type="button" class="btn btn-danger" ng-click="deletePet(pet)" width="20" height="20" value="Delete" />
-        </div>
-    </div>
-</div>
+  <div class="clear"></div>
+</div> <!-- END of main -->

@@ -1,23 +1,39 @@
-<div>
-    <br><br><br><br><br>
-    <a href="#/pet"><strong>Go Back</strong></a>
-    <br>
-    <br>
-    <span width="50%">
-    <div class="div-table" id="petDetails">
-        <div class="div-row">
-            <div class="div-cell">
-                <div ng-repeat="petPhoto in pet.photoUrl">
-                    <img ng-src="img/{{petPhoto}}.jpg" height="60" width="60"/>
-                </div>
-            </div>
-            <div class="div-cell">
-                <div><strong>Name:</strong> {{pet.petName}}</div>
-                <div><strong>Category:</strong>{{pet.category}}</div>
-                <div><strong>Status:</strong>{{pet.status}}</div>
-                <div><strong>Tags:</strong>
-                    <div ng-repeat="petTag in pet.tags">{{petTag.tagName}}</div>
-                </div>
-            </div>
+<div style="float: left; width: 500px">
+
+<a href="#/pet"><strong>Go Back</strong></a>
+<br>
+<br>
+<div id="tooplate_wrapper">
+  <div id="tooplate_main"><span class="main_border main_border_t"></span><span class="main_border main_border_b"></span>
+    <div class="product">
+      <div class="col col_2 product_preview">
+        <img ng-src="img/{{pet.photoUrl[0]}}.jpg" class="left" alt="image" height="225" width="225"/>
+        <ul class="nobullet">
+          <li ng-repeat="petPhoto in pet.photoUrl">
+            <img ng-src="img/{{petPhoto}}.jpg" alt="image" ng-show="$index != 0" height="100" width="100"/>
+          </li>
+        </ul>
+        <div class="clear"></div>
+      </div>
+      <div class="col col_2 product_detail">
+        <h1>Details</h1>
+        <div class="clear h20"></div>
+        <p class="price"><span><strong>Name: </strong>{{pet.petName}}</span></p>
+        <p class="price"><span><strong>Status: </strong>{{pet.status}}</span></p>
+        <p class="price"><span><strong>Category: </strong>{{pet.category}}</span></p>
+        <p class="price"><span><strong>Tags: </strong>
+        <span ng-repeat="petTag in pet.tags">{{petTag.tagName}}&nbsp;</span></span>
+        </p>
+      </div>
+      <div class="clear"></div>
     </div>
-</div>
+    <hr/>
+    <div class="clear"></div>
+  </div> <!-- END of main -->
+</div> <!-- END of wrapper -->
+
+<div id="tooplate_bottom_wrapper">
+  <div id="tooplate_bottom">
+    <div class="clear"></div>
+  </div> <!-- END of bottom -->
+</div> <!-- END of bottom wrapper -->

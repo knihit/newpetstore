@@ -10,6 +10,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Profile;
 
 import com.infaspects.pet.repository.PetRepository;
 import com.infaspects.pet.repository.TagRepository;
@@ -34,6 +35,7 @@ public class PetStoreApplication {
 	}
 
 	@Bean
+	@Profile("dev")
 	CommandLineRunner runner(PetRepository petRepository,
 			TagRepository tagRepository, CounterService counterService) {
 		return args -> {
